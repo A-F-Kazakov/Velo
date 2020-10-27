@@ -15,40 +15,30 @@ option(${PROJECT_NAME_UPPER}_BUILD_EXAMPLES "Build ${PROJECT_NAME} examples" OFF
 set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-add_library(${PROJECT_NAME}_obj OBJECT
+add_library(${PROJECT_NAME}
 	${SOURCE_DIR}/settings.cpp
 	${SOURCE_DIR}/argument_parser.cpp
-	${SOURCE_DIR}/file_watcher.cpp
-	${SOURCE_DIR}/logger.cpp
+	#${SOURCE_DIR}/file_watcher.cpp
+	#${SOURCE_DIR}/logger.cpp
 )
 
-target_compile_features(${PROJECT_NAME}_obj PUBLIC cxx_std_17)
-target_include_directories(${PROJECT_NAME}_obj
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+target_include_directories(${PROJECT_NAME}
 	PUBLIC
 		$<BUILD_INTERFACE:${INCLUDE_DIR}> 
 		$<INSTALL_INTERFACE:include/${PROJECT_NAME_LOWER}>
 )
 
-add_library(${PROJECT_NAME}_static STATIC)
-set_target_properties(${PROJECT_NAME}_static PROPERTIES OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT ON)
-target_link_libraries(${PROJECT_NAME}_static PRIVATE ${PROJECT_NAME}_obj)
-
-add_library(${PROJECT_NAME}_shared SHARED)
-target_link_libraries(${PROJECT_NAME}_shared PRIVATE ${PROJECT_NAME}_obj)
-set_target_properties(${PROJECT_NAME}_shared
+set_target_properties(${PROJECT_NAME}
 	PROPERTIES
-		OUTPUT_NAME ${PROJECT_NAME}
-		CLEAN_DIRECT_OUTPUT ON
 		VERSION ${PROJECT_VERSION}
 		SOVERSION ${PROJECT_VERSION_MAJOR}
 )
 
-add_custom_target(${PROJECT_NAME} DEPENDS ${PROJECT_NAME}_shared ${PROJECT_NAME}_static)
-
 add_library(${CMAKE_PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 install(EXPORT ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_LIB_DIR}/cmake/${PROJECT_NAME_LOWER} FILE ${PROJECT_NAME}Config.cmake)
-install(TARGETS ${PROJECT_NAME}_shared ${PROJECT_NAME}_static ${PROJECT_NAME}_obj
+install(TARGETS ${PROJECT_NAME}
 	EXPORT ${PROJECT_NAME}
 	RUNTIME DESTINATION bin COMPONENT ${PROJECT_NAME}
 	LIBRARY DESTINATION lib COMPONENT ${PROJECT_NAME}
