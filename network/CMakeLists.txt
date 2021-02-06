@@ -22,12 +22,7 @@ target_include_directories(${PROJECT_NAME}
 )
 
 if(WIN32)
-	target_compile_definitions(${PROJECT_NAME} INTERFACE "OS_WIN")
 	target_link_libraries(${PROJECT_NAME} INTERFACE ws2_32)
-endif()
-
-if(UNIX)
-	target_compile_definitions(${PROJECT_NAME} INTERFACE "OS_UNIX")
 endif()
 
 add_library(${CMAKE_PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
