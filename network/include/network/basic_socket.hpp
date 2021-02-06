@@ -408,3 +408,48 @@ namespace network
 } // namespace network
 
 #endif // NETWORK_BASIC_SOCKET_HPP
+ 
+#include <optional>
+#include <system_error>
+
+namespace network
+{
+    struct endpoint{};
+
+    enum three_way_latch{ read, write, both };
+
+    template<typename Protocol>
+    struct basic_socket
+    {
+        using native_type = int;
+        using protocol_type = Protocol;
+
+        basic_socket() = default;
+        explicit basic_socket(const protocol_type& proto) noexcept { open(proto);}
+
+        basic_socket(const basic_socket&) noexcept = delete;
+        basic_socket(basic_socket&&) noexcept = default;
+
+        ~basic_socket() noexcept { close(); }
+
+        basic_socket& operator=(const basic_socket&) noexcept = delete;
+        basic_socket& operator=(basic_socket&&) noexcept = default;
+
+        std::error_code open(protocol_type endp) noexcept { return {}; }
+
+        std::error_code close() noexcept { return {}; }
+
+        std::error_code shutdown(three_way_latch type) noexcept { return {}; }
+
+        [[nodiscard]]
+        size_t read(endpoint endp, std::error_code&) noexcept { return 0; }
+
+        [[nodiscard]]
+        size_t read(std::error_code&) noexcept { return 0; }
+
+        private:
+            native_type descriptor{};
+    };
+
+    struct tcp{};
+}

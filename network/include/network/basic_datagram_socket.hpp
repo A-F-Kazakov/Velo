@@ -4,8 +4,7 @@
 #include "basic_socket.hpp"
 #include "buffer.hpp"
 
-namespace network
-{
+namespace network {
 	template<class Protocol>
 	class basic_datagram_socket : public basic_socket<Protocol>
 	{
