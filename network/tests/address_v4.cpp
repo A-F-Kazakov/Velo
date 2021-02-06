@@ -8,7 +8,7 @@ const address_v4::bytes_type zero_array{{0, 0, 0, 0}};
 const address_v4::bytes_type uno_array{{1, 1, 1, 1}};
 const address_v4::bytes_type max_array{{255, 255, 255, 255}};
 
-TEST_CASE("Default constructor", "[address_v4]")
+TEST_CASE("Address can be default constructed", "[address_v4]")
 {
 	address_v4 addr;
 
@@ -22,9 +22,9 @@ TEST_CASE("Default constructor", "[address_v4]")
 	REQUIRE(addr.is_unspecified());
 };
 
-TEST_CASE("Uint constructor", "[address_v4]")
+TEST_CASE("Address can be constructed from integer", "[address_v4]")
 {
-	address_v4 addr(0x01010101);
+	address_v4 addr{0x01010101};
 
 	auto data = addr.to_bytes();
 
@@ -36,9 +36,9 @@ TEST_CASE("Uint constructor", "[address_v4]")
 	REQUIRE(addr.is_unspecified());
 };
 
-TEST_CASE("Array constructor", "[address_v4]")
+TEST_CASE("Address can be constructed from bytes array", "[address_v4]")
 {
-	address_v4 addr(max_array);
+	address_v4 addr{max_array};
 
 	auto data = addr.to_bytes();
 
@@ -50,11 +50,11 @@ TEST_CASE("Array constructor", "[address_v4]")
 	REQUIRE(addr.is_unspecified());
 }
 
-TEST_CASE("Copy constructor", "[address_v4]")
+TEST_CASE("Address is copyable", "[address_v4]")
 {
-	address_v4 addr_copyable(max_array);
+	address_v4 addr_copyable{max_array};
 
-	address_v4 addr(addr_copyable);
+	address_v4 addr{addr_copyable};
 
 	auto data = addr.to_bytes();
 
@@ -68,11 +68,11 @@ TEST_CASE("Copy constructor", "[address_v4]")
 	REQUIRE(addr.is_unspecified());
 }
 
-TEST_CASE("Move constructor", "[address_v4]")
+TEST_CASE("Address is movable", "[address_v4]")
 {
-	address_v4 addr_movable(max_array);
+	address_v4 addr_movable{max_array};
 
-	address_v4 addr(std::move(addr_movable));
+	address_v4 addr{std::move(addr_movable)};
 
 	auto data		 = addr.to_bytes();
 	auto moved_data = addr_movable.to_bytes();
@@ -89,38 +89,7 @@ TEST_CASE("Move constructor", "[address_v4]")
 	REQUIRE(addr.is_unspecified());
 }
 
-TEST_CASE("Cppy assign operator", "[address_v4]")
-{
-	address_v4 addr_copyable(uno_array);
-
-	address_v4 addr = addr_copyable;
-
-	auto data		= addr.to_bytes();
-	auto copy_data = addr_copyable.to_bytes();
-
-	REQUIRE(equal(copy_data.begin(), copy_data.end(), data.begin(), data.end()));
-	REQUIRE(addr.to_uint() == addr_copyable.to_uint());
-	REQUIRE(addr.to_string() == addr_copyable.to_string());
-	REQUIRE(addr.is_loopback() == addr_copyable.is_loopback());
-	REQUIRE(addr.is_multicast() == addr_copyable.is_multicast());
-	REQUIRE(addr.is_unspecified() == addr_copyable.is_unspecified());
-}
-
-TEST_CASE("Move assign operator", "[address_v4]")
-{
-	address_v4 addr_movable(uno_array);
-
-	address_v4 addr = std::move(addr_movable);
-
-	auto data		 = addr.to_bytes();
-	auto moved_data = addr_movable.to_bytes();
-
-	REQUIRE(equal(moved_data.begin(), moved_data.end(), data.begin(), data.end()));
-	REQUIRE(addr.to_uint() == addr_movable.to_uint());
-	REQUIRE(addr.to_string() == addr_movable.to_string());
-}
-
-TEST_CASE("Comparison operator", "[address_v4]")
+TEST_CASE("Address can compare", "[address_v4]")
 {
 	address_v4 addr1;
 
@@ -133,7 +102,7 @@ TEST_CASE("Comparison operator", "[address_v4]")
 	REQUIRE(addr1 != addr4);
 }
 
-TEST_CASE("From string", "[address_v4]")
+TEST_CASE("Address can be constructed from string", "[address_v4]")
 {
 	std::string address_string = "127.0.0.1";
 	auto addr						= address_v4::from_str(address_string);
