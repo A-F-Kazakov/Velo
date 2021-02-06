@@ -1,52 +1,20 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-#include<ostream>
-#include<string_view>
+#include <ostream>
+#include <string_view>
 
 namespace console
 {
-	enum class FontColor : int16_t
-	{
-		DEFAULT,
-		BLACK,
-		RED,
-		GREEN ,
-		BROWN,
-		BLUE,
-		VIOLET,
-		SEA,
-		GRAY
-	};
+	enum class FontColor : int16_t { DEFAULT, BLACK, RED, GREEN, BROWN, BLUE, VIOLET, SEA, GRAY };
 
 	std::ostream& operator<<(std::ostream&, FontColor);
 
-	enum class Font
-	{
-		DEFAULT,
-		BOLD,
-		FADED,
-		UNDERLINED,
-		BLINKING,
-		NON_DOLD,
-		NON_UNDERLINED,
-		NON_BLINKING
-	};
+	enum class Font { DEFAULT, BOLD, FADED, UNDERLINED, BLINKING, NON_DOLD, NON_UNDERLINED, NON_BLINKING };
 
 	std::ostream& operator<<(std::ostream&, Font);
 
-	enum class BackgroundColor : std::int16_t
-	{
-		DEFAULT,
-		BLACK,
-		RED,
-		GREEN,
-		BROWN,
-		BLUE,
-		VIOLET,
-		SEA,
-		GRAY
-	};
+	enum class BackgroundColor : std::int16_t { DEFAULT, BLACK, RED, GREEN, BROWN, BLUE, VIOLET, SEA, GRAY };
 
 	std::ostream& operator<<(std::ostream&, BackgroundColor);
 
@@ -77,5 +45,6 @@ namespace console
 	void writeToPosition(int, int, std::string_view);
 
 	char getKeyPress();
-}
+} // namespace console
+
 #endif
