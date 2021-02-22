@@ -1,8 +1,3 @@
-/**
- * @author   Казаков Андрей 
- * @date     16.07.19.
- */
-
 #include <iostream>
 
 #include <sys/sysinfo.h>

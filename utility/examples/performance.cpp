@@ -1,14 +1,9 @@
-/**
- * @author   Казаков Андрей 
- * @date     14.01.19.
- */
-
 #include <array>
 #include <algorithm>
 #include <iostream>
 
-#include "performance.h"
-#include "arch.h"
+#include <utility/performance.hpp>
+#include "arch.hpp"
 
 void iterate(std::array<int, 10'000>& arr)
 {

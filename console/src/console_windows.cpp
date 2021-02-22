@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include <io.h>
 
-#include "console/console.h"
+#include "console/console.hpp"
 
 static COORD current_dimension = {0, 0};
 static HANDLE consoleHandle = INVALID_HANDLE_VALUE;

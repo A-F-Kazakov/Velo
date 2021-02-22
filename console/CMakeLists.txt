@@ -12,13 +12,21 @@ message(STATUS "${PROJECT_NAME} Version: ${${PROJECT_NAME_UPPER}_VERSION_MAJOR}.
 
 option(${PROJECT_NAME_UPPER}_BUILD_EXAMPLES "Build ${PROJECT_NAME} examples" OFF)
 
-add_library(${PROJECT_NAME} INTERFACE)
-target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
+add_library(${PROJECT_NAME} STATIC)
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 target_include_directories(${PROJECT_NAME}
-	INTERFACE
+	PUBLIC
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> 
 		$<INSTALL_INTERFACE:include/${PROJCET_NAME_LOWER}>
 )
+
+target_sources(${PROJECT_NAME} PRIVATE include/${PROJECT_NAME_LOWER}/console)
+
+if(UNIX)
+	target_sources(${PROJECT_NAME} PRIVATE src/console_linux)
+elseif(WIN32)
+	target_sources(${PROJECT_NAME} PRIVATE src/console_windows)
+endif()
 
 add_library(${CMAKE_PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 

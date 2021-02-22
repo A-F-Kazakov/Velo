@@ -1,9 +1,4 @@
-/**
- * @author   Казаков Андрей 
- * @date     12.03.19.
- */
-
-#include "logger.h"
+#include <utility/logger.hpp>
 
 using utility::logger;
 

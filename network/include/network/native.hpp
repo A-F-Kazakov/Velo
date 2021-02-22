@@ -1,6 +1,8 @@
 #ifndef NETWORK_CONFIG_HPP
 #define NETWORK_CONFIG_HPP
 
+#include <system_error>
+
 #if __has_include("arch.hpp")
 #include "arch.hpp"
 #endif

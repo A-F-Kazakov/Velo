@@ -12,12 +12,30 @@ message(STATUS "${PROJECT_NAME} Version: ${${PROJECT_NAME_UPPER}_VERSION_MAJOR}.
 
 option(${PROJECT_NAME_UPPER}_BUILD_TESTS "Build ${PROJECT_NAME} tests" OFF)
 
+set(INCLUDE_DIR ${CURRENT_SOUCE_DIR}/incluce/${PROJECT_NAME_LOWER})
+
 add_library(${PROJECT_NAME} INTERFACE)
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
 target_include_directories(${PROJECT_NAME}
 	INTERFACE
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> 
 		$<INSTALL_INTERFACE:include/${PROJECT_NAME_LOWER}>
+)
+
+target_sources(${PROJECT_NAME}
+	INTERFACE
+		${INCLUDE_DIR}/algorithms/distance
+		${INCLUDE_DIR}/algorithms/equivalent
+		${INCLUDE_DIR}/algorithms/intersect
+		${INCLUDE_DIR}/algorithms/parallel
+		${INCLUDE_DIR}/basic_line
+		${INCLUDE_DIR}/basic_point
+		${INCLUDE_DIR}/flat/line
+		${INCLUDE_DIR}/flat/point
+		${INCLUDE_DIR}/flat/segment
+		${INCLUDE_DIR}/traits
+		${INCLUDE_DIR}/spatial/line
+		${INCLUDE_DIR}/spatial/point
 )
 
 add_library(${CMAKE_PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
@@ -31,6 +49,6 @@ install(TARGETS ${PROJECT_NAME}
 )
 
 if(${PROJECT_NAME_UPPER}_BUILD_TESTS)
-	add_subdirectory(test)
+	add_subdirectory(tests)
 endif()
 

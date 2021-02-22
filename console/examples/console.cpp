@@ -1,13 +1,8 @@
-/**
- * @author	Казаков Андрей
- * @date	14.03.2017.
- */
-
 #include <iostream>
 
-#include "console/console.h"
+#include <console/console.hpp>
 
-int main(int args, char** argv, char** env)
+int main()
 {
 #ifdef OS_WIN
 	//	_setmode(_fileno(stdout), _O_U8TEXT);

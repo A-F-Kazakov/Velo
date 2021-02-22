@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <iostream>
 
-#include "console/console.h"
+#include "console/console.hpp"
 
 //	\033[#A передвинуть курсор вверх на # строк
 //	\033[#B передвинуть курсор вниз на # строк

@@ -1,4 +1,4 @@
-#include <utility/settings.h>
+#include <utility/settings.hpp>
 
 #include <fstream>
 

@@ -1,6 +1,6 @@
 #include <thread>
 
-#include "utility/file_watcher.h"
+#include <utility/file_watcher.hpp>
 
 utility::file_watcher::file_watcher(std::string path_to_watch, std::chrono::duration<int, std::milli> delay) :
 path_to_watch{path_to_watch}, delay{delay}, running(true)

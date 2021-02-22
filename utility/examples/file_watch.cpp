@@ -1,11 +1,6 @@
-/**
- * @author   Казаков Андрей 
- * @date     20.02.19.
- */
-
 #include <iostream>
 
-#include "file_watcher.h"
+#include <utility/file_watcher.hpp>
 
 using namespace utility;
 

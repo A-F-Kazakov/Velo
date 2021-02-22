@@ -7,9 +7,9 @@ link_libraries(${PROJECT_NAME})
 #
 
 set(TARGET_NAME ${TARGET_NAME_HEAD}_console)
-add_executable(${TARGET_NAME} typelist.cpp)
+add_executable(${TARGET_NAME} typelist)
 
 #
 
 set(TARGET_NAME ${TARGET_NAME_HEAD}_serializer)
-add_executable(${TARGET_NAME} serializer.cc)
+add_executable(${TARGET_NAME} serializer)

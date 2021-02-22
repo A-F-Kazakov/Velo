@@ -1,11 +1,6 @@
-/**
- * @author   Казаков Андрей 
- * @date     26.05.18.
- */
-
 #include <iostream>
 
-#include "typelist.h"
+#include <generic/typelist.hpp>
 
 using namespace generic;
 
