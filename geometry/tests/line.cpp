@@ -1,37 +1,46 @@
+#include <catch2/catch.hpp>
 #include <geometry/flat/line.hpp>
 
 using line2d = geometry::flat::line<double>;
 
-/*
-BOOST_AUTO_TEST_SUITE(line2d_class)
+TEST_CASE("Line can be default constructable", "[line]")
+{
+	line2d l;
 
-	BOOST_AUTO_TEST_CASE(constructors)
-	{
-		line2d l;
+	CHECK(l.a() == 0);
+	CHECK(l.b() == 0);
+	CHECK(l.c() == 0);
+}	
 
-		BOOST_CHECK_EQUAL(l.a(), 0);
-		BOOST_CHECK_EQUAL(l.b(), 0);
-		BOOST_CHECK_EQUAL(l.c(), 0);
+TEST_CASE("Line can be constructed via coefficients", "[line]")
+{
+	line2d l1{1, 3, 6};
 
-		line2d l1(1, 3, 6);
+	CHECK(l1.a() == 1);
+	CHECK(l1.b() == 3);
+	CHECK(l1.c() == 6);
+}
 
-		BOOST_CHECK_EQUAL(l1.a(), 1);
-		BOOST_CHECK_EQUAL(l1.b(), 3);
-		BOOST_CHECK_EQUAL(l1.c(), 6);
+TEST_CASE("Line can be constructed via two points", "[line]")
+{
+	line2d l2{{2, 5}, {10, 9}};
 
-		line2d l2({2, 5}, {10, 9});
+	CHECK(l2.a() == -4);
+	CHECK(l2.b() == 8);
+	CHECK(l2.c() == -32);
+}
 
-		BOOST_CHECK_EQUAL(l2.a(), -4);
-		BOOST_CHECK_EQUAL(l2.b(), 8);
-		BOOST_CHECK_EQUAL(l2.c(), -32);
+TEST_CASE("Line can be normalized", "[line]")
+{
+	line2d l{{2, 5}, {10, 9}};
+	l.normalize();
 
-		l2.normalize();
+	REQUIRE_THAT(l.a(), Catch::Matchers::WithinRel(-0.5, 0.001));
+	REQUIRE_THAT(l.b(), Catch::Matchers::WithinRel(1, 0.0001));
+	REQUIRE_THAT(l.c(), Catch::Matchers::WithinRel(-4, 0.0001));
+}
 
-		BOOST_CHECK_CLOSE(l1.a(), -0.5, 0.001);
-		BOOST_CHECK_CLOSE(l1.b(), 1, 0.0001);
-		BOOST_CHECK_CLOSE(l1.c(), -4, 0.0001);
-
-		l1 = {4, -2, -2};
+		//l1 = {4, -2, -2};
 
 //		point p = l1.get_point_on_line(0, axes::OX);
 
@@ -56,8 +65,4 @@ BOOST_AUTO_TEST_SUITE(line2d_class)
 //
 //		BOOST_CHECK_EQUAL(intersection.x, 2);
 //		BOOST_CHECK_EQUAL(intersection.y, 2);
-	}
-
-BOOST_AUTO_TEST_SUITE_END()
-*/
-int main() {}
+	//}

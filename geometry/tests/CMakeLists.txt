@@ -2,7 +2,8 @@ message(STATUS "Build ${PROJECT_NAME} tests enabled")
 
 set(TARGET_NAME_HEAD ${PROJECT_NAME}_test)
 
-link_libraries(${PROJECT_NAME})
+link_libraries(${PROJECT_NAME} Catch2::Catch2)
+add_definitions(-DCATCH_CONFIG_MAIN)
 
 #
 
