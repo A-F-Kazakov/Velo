@@ -10,13 +10,15 @@ namespace std
 	inline std::string to_string(std::string v) { return v; }
 
 	template<typename T>
+	inline std::string to_string(T v) { return {}; }
+
+	template<typename T>
 	inline std::string to_string(const T *const p, size_t n) noexcept
 	{
 		std::string tmp(std::to_string(*(p + 1)));
 		for(int i = 1; i < n; ++i)
 			tmp += "," + std::to_string(*((int *)(p + i)));
 		return tmp;
-		return "";
 	}
 
 	template<class T, size_t N>

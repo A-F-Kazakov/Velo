@@ -6,6 +6,8 @@ string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
 
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+find_package(Catch2 REQUIRED)
+
 add_subdirectory(console)
 add_subdirectory(generic)
 add_subdirectory(geometry)

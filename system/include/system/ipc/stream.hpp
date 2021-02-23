@@ -1,14 +1,11 @@
 #ifndef VELO_SYSTEM_STREAM_HPP
 #define VELO_SYSTEM_STREAM_HPP
 
-#include "basic_endpoint.h"
-
 namespace system::ipc
 {
 	class stream_protocol
 	{
 		public:
-			using endpoint = basic_endpoint<stream_protocol>;
 			using socket = basic_stream_socket<stream_protocol>;
 			using acceptor = basic_socket_acceptor<stream_protocol>;
 			using iostream = basic_socket_iostream<stream_protocol>;

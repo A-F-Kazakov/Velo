@@ -16,22 +16,22 @@ int main(int argc, char* argv[])
 			return 1;
 		}
 
-		stream_protocol::socket s();
-		s.connect(stream_protocol::endpoint(argv[1]));
+		stream_protocol::socket s;
+		//s.connect(stream_protocol::endpoint(argv[1]));
 
 		std::cout << "Enter message: ";
 
-		std::string str(max_length);
+		//std::string str(max_length);
 
-		std::cin.getline(str);
-		s.write(buffer(str));
+		//std::cin.getline(str);
+		//s.write(buffer(str));
 
 		char reply[max_length];
 
-		auto reply_length = s.read(buffer(reply, max_length));
+		//auto reply_length = s.read(buffer(reply, max_length));
 
 		std::cout << "Reply is: ";
-		std::cout.write(reply, reply_length);
+		//std::cout.write(reply, reply_length);
 		std::cout << "\n";
 	}
 	catch(std::exception& e)

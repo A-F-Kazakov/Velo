@@ -33,7 +33,7 @@ TEST_CASE("Adress can be constructed from address v6", "[address]")
 
 TEST_CASE("Address is copyable", "[address]")
 {
-	address addr_old{address::v6::any(});
+	address addr_old{address::v6::any()};
 	address addr{addr_old};
 
 	REQUIRE(addr.to_string() == "::");

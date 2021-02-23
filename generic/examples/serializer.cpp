@@ -35,7 +35,7 @@ struct generic::type_traits::access<person, 1> : std::false_type
 template<>
 struct generic::type_traits::access<person, 2> : std::false_type
 {
-	using type = uint8_t;
+	using type = int;
 
 	static inline std::string get_name() { return "age"; }
 	static inline int get(person v) { return v.age; };

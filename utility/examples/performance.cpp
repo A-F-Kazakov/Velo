@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include <utility/performance.hpp>
-#include "arch.hpp"
+#include <utility/arch.hpp>
 
 void iterate(std::array<int, 10'000>& arr)
 {
