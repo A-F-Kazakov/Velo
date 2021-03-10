@@ -22,3 +22,9 @@ add_test(NAME ${TARGET_NAME} COMMAND ${TARGET_NAME} -o address_v6.xml -r junit)
 set(TARGET_NAME ${TARGET_NAME_HEAD}_address)
 add_executable(${TARGET_NAME} address)
 add_test(NAME ${TARGET_NAME} COMMAND ${TARGET_NAME} -o address.xml -r junit)
+
+#
+
+set(TARGET_NAME ${TARGET_NAME_HEAD}_endpoint)
+add_executable(${TARGET_NAME} endpoint)
+add_test(NAME ${TARGET_NAME} COMMAND ${TARGET_NAME} -o address.xml -r junit)
